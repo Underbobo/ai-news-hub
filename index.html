@@ -351,6 +351,16 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        .rank-summary {
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--text-secondary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-top: 2px;
+        }
         .rank-meta {
             display: flex;
             align-items: center;
@@ -634,9 +644,63 @@
                 '英伟达市值突破 3.5 万亿美元',
             ];
 
+            const summaries = [
+                'OpenAI 最新发布的 GPT-5 预览版在逻辑推理、数学计算和代码生成方面实现了质的飞跃，上下文窗口扩展至 200 万 token。',
+                'Anthropic 发布 Claude 4，支持高达 200 万 token 的上下文窗口，能够一次性处理整本长篇小说或大型代码库。',
+                'Google DeepMind 正式推出 Gemini 2.5 Pro，多模态理解能力大幅提升，图像、视频、音频统一建模。',
+                'Meta 最新开源 Llama 4，参数规模达到 400B，在多项基准测试中与 GPT-4 性能持平。',
+                'Midjourney V7 正式发布，图像生成质量逼近摄影级，对光影、材质和人物面部细节的还原度大幅提升。',
+                'Stable Diffusion 3.5 开源发布，文生图速度较上代翻倍，支持更高分辨率和更精确的文本控制。',
+                'NVIDIA 发布新一代 H200 GPU，专为 AI 训练优化，相比 H100 训练速度提升 90%，推理吞吐翻倍。',
+                'Apple 在 iOS 19 中深度集成端侧大模型，所有 AI 计算在设备本地完成，隐私保护达到新高度。',
+                'Microsoft Copilot 新增代码审查和架构设计功能，能够自动发现潜在 bug 并提出重构建议。',
+                'xAI 发布 Grok 3，实现真正的多模态推理，代码生成能力在 HumanEval 基准上超越 Claude。',
+                'Perplexity 推出 Pages 功能，AI 可以生成长篇知识文章并自动添加引用来源，支持分享和协作编辑。',
+                'Runway Gen-4 视频生成模型突破 60 秒时长限制，人物动作一致性和场景连贯性大幅提升。',
+                'Pika Labs 发布 3D 视频生成模型，支持 360 度自由视角切换，为 VR/AR 内容创作带来革新。',
+                'Cohere 发布 Command R+ 企业版，支持私有部署和数据隔离，满足金融、医疗等行业合规需求。',
+                '法国 AI 独角兽 Mistral AI 完成 6 亿美元 B 轮融资，估值超过 120 亿美元，投资方包括 a16z。',
+                'Google 以 25 亿美元收购 Character.AI，创始人 Noam Shazeer 回归 Google 担任副总裁。',
+                'Hugging Face 推出零代码 AI 模型训练平台，用户只需上传数据集即可微调大模型。',
+                'Replicate 上线实时推理 API，模型响应延迟低于 100ms，支持流式输出和自动扩缩容。',
+                'LangChain v0.3 正式发布，核心链路性能提升 3 倍，内存占用减半，新增可视化调试工具。',
+                'AutoGPT 发布重大更新，支持多智能体协作与复杂任务分解，可以像团队一样协同完成项目。',
+                'Devin AI 程序员正式商用，月费 500 美元即可雇佣一名 24 小时在线的 AI 软件工程师。',
+                'Cursor IDE 用户突破 100 万，AI 编程工具市场迎来爆发式增长，开发者效率平均提升 55%。',
+                'GitHub Copilot Workspace 开放公测，AI 可以辅助完成从需求分析到架构设计的全流程。',
+                'AWS 推出自研 Trainium3 AI 芯片，训练成本较 NVIDIA GPU 降低 40%，即将开放预览。',
+                '阿里云发布通义千问 3.0，中文理解和生成能力全面领先，推理成本降低 85%。',
+                '百度文心一言 5.0 支持实时联网搜索，知识时效性从天级提升到秒级。',
+                '字节跳动发布豆包大模型 Pro 版，推理成本降低 80%，已接入抖音和飞书生态。',
+                '腾讯混元大模型 2.0 全面开源，采用 Apache 2.0 协议，社区反响热烈。',
+                '智谱 AI 发布 GLM-5，多模态能力全面升级，首次支持视频内容理解和生成。',
+                '月之暗面 Kimi 支持 200 万字上下文窗口，长文档处理和分析能力行业领先。',
+                'MiniMax 发布 abab 6.5 模型，长文本处理能力刷新行业记录，支持 100 万 token 输入。',
+                '零一万物 Yi-2 34B 登顶开源模型榜单，中文能力突出，代码生成媲美 GPT-4。',
+                '面壁智能推出 MiniCPM 3.0，端侧小模型性能媲美 GPT-3.5，可在手机流畅运行。',
+                'DeepSeek V3 发布，性能比肩 GPT-4 但训练成本仅 1/10，引发行业对算力效率的重新思考。',
+                '商汤科技日日新 5.5 大模型发布，医疗诊断准确率达 92%，已在国内多家三甲医院试用。',
+                '科大讯飞星火认知大模型 V4.0 发布，数学推理和物理问题求解能力大幅提升。',
+                '昆仑万维天工 3.0 多模态模型支持图文音视频统一处理，创作能力全面升级。',
+                '360 智脑 4.0 推出 AI 安全卫士，可实时检测深度伪造视频和 AI 生成虚假信息。',
+                '京东言犀大模型接入购物场景，AI 导购转化率达真人客服的 1.4 倍。',
+                '华为盘古大模型 5.0 发布，工业质检场景准确率达 95%，已在制造业大规模部署。',
+                'OpenAI Sora 正式对外开放，支持 1080p 视频生成最长 60 秒，注册即可免费试用。',
+                'ElevenLabs 推出 AI 音乐生成工具，可生成完整歌曲，支持多种风格和情绪控制。',
+                'HeyGen 数字人视频翻译支持 50 种语言，口型同步精度达 98%，成本降低 90%。',
+                'Figure AI 人形机器人进厂打工，每小时处理 500 个包裹，24 小时不间断作业。',
+                'Tesla Optimus 二代展示精细操作能力，可折叠衬衫、弹钢琴，灵活度接近人类。',
+                'Waymo 自动驾驶出租车扩展至洛杉矶，日均订单破万，安全里程累计超 5000 万公里。',
+                'OpenAI 与苹果达成深度集成协议，Siri 将全面升级，支持自然语言多轮对话。',
+                '欧盟正式通过 AI 法案最终版本，这是全球首部综合性 AI 监管法规，违规最高罚款 3500 万欧元。',
+                '美国对华 AI 芯片出口管制再加码，H200 也在限制名单，国产替代进程加速。',
+                '英伟达市值突破 3.5 万亿美元，超越苹果和微软，成为全球市值最高公司。',
+            ];
+
             return titles.map((title, i) => ({
                 rank: i + 1,
                 title: title,
+                summary: summaries[i] || '',
                 source: sources[i % sources.length],
                 url: '#',
                 category: ['model', 'product', 'research', 'invest', 'policy'][i % 5],
@@ -658,10 +722,14 @@
                 data = data.filter(item => item.category === currentFilter);
             }
 
-            // 搜索
+            // 搜索（标题 + 摘要）
             const search = document.getElementById('searchInput').value.trim().toLowerCase();
             if (search) {
-                data = data.filter(item => item.title.toLowerCase().includes(search));
+                data = data.filter(item => {
+                    const inTitle = item.title.toLowerCase().includes(search);
+                    const inSummary = (item.summary || '').toLowerCase().includes(search);
+                    return inTitle || inSummary;
+                });
             }
 
             // 限制 Top 50
@@ -685,6 +753,7 @@
                     <div class="rank-badge ${badgeClass}">${rank}</div>
                     <div class="rank-content">
                         <div class="rank-title">${item.title}</div>
+                        ${item.summary ? `<div class="rank-summary">${item.summary}</div>` : ''}
                         <div class="rank-meta">
                             <div class="rank-source">
                                 <div class="favicon">${item.source.charAt(0)}</div>

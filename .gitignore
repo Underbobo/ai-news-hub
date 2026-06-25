@@ -13,3 +13,5 @@ deploy.sh
 # OS
 .DS_Store
 Thumbs.db
+package.json
+pnpm-lock.yaml
